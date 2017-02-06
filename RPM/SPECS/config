@@ -1,0 +1,11 @@
+pkgName="newsgate-config-$configType"
+specFile=$specDir/newsgate-config.spec
+vcsModules[$vcsModule]=$modBuild
+vcsSubModules[$vcsModule]="Template Locations/$configType RPM/"
+
+function modifyConfigSpec {
+  execCmd "sed -i 's/##TYPE##/$configType/' $targetDir/RPM/SPECS/`basename $specFile`"
+}
+
+stage[31]='modifyConfigSpec'
+stage[60]='none'
