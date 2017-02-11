@@ -1,0 +1,105 @@
+import search_util
+
+class TermsPageRender(search_util.SearchPageContext):
+
+  terms_page_render_base = search_util.SearchPageContext
+
+  def __init__(this, context, search_engine):
+    
+    this.terms_page_render_base.__init__(this,
+                                                 context,
+                                                 search_engine,
+                                                 "x",
+                                                 True)
+    this.query = ""
+    this.modifier = search_util.Modifier()
+    this.posted = False
+
+  def prn_css(this):
+
+    if this.static.development:
+      
+      this.terms_page_render_base.prn_css(this)
+    
+      this.prn(\
+        '\n<link rel="stylesheet" type="text/css" href="',
+        this.resource_url('/fixed/css/c.css'),
+        '" media="all"/>')
+
+      if this.site_version == search_util.SearchPageContext.SV_MOB:
+        this.prn(\
+          '\n<link rel="stylesheet" type="text/css" href="',
+          this.resource_url('/fixed/css/c-mob.css'),
+          '" media="all"/>')
+
+    else:
+
+      if this.site_version == search_util.SearchPageContext.SV_MOB:
+        this.prn(\
+          '\n<link rel="stylesheet" type="text/css" href="',
+          this.compound_resource_url('css/c-mob.css'),
+          '" media="all"/>')
+        
+      else:
+        this.prn(\
+          '\n<link rel="stylesheet" type="text/css" href="',
+          this.compound_resource_url('css/c.css'),
+          '" media="all"/>')
+
+request = context.request
+prn = request.output.stream.prn
+loc = context.localization.get
+lm = el.psp.LocalizationMarker
+
+render = TermsPageRender(context, None)
+render.legacy_title = False
+
+render.prn_html_open()
+render.prn_head_open()
+
+prn('\n<title>', lm, "TITLE", ' - ', 
+    el.string.manip.xml_encode(render.static.server_instance_name),
+    '</title>')
+
+if render.site_version == search_util.SearchPageContext.SV_MOB:
+  render.prn('<meta name="viewport" content="width=device-width"/>')
+
+render.prn_css()
+render.prn_head_close()
+
+render.prn_body_open()
+
+prn(R'''
+<table id="topbar_table">
+  <tr>
+  <td id="tagline">''', lm, "TAGLINE", R'''</td>
+  <td id="menu"><a href="''',
+    el.string.manip.xml_encode(render.site + "/"), '">')
+
+if render.site_version == search_util.SearchPageContext.SV_MOB:
+  prn('<img src="', render.resource_url('/fixed/img/home32.png'),
+      '" width="32" height="32" class="mob_menu_img"/>')
+
+else:
+  prn(lm, "NEW_SEARCH")
+
+prn(R'''</a>
+  </td>
+  </tr>
+</table>
+<table id="main_area" align="center"><tr><td>
+<div id="feed_back">''', lm, "INTRO", R'''</div>
+<div id="feed_back">''', lm, "P1", R'''</div>
+<div id="feed_back">''', lm, "P2", R'''</div>
+<div id="feed_back">''', lm, "P3", R'''</div>
+<div id="feed_back">''', lm, "P4", R'''</div>
+<div id="feed_back">''', lm, "P5", R'''</div>
+<div id="feed_back">''', lm, "P6", R'''</div>
+<div id="feed_back">''', lm, "P7", R'''</div>
+<div id="feed_back">''', lm, "P8", R'''</div>
+</td></tr></table>''')
+
+render.prn_copyright(True)
+render.prn_counters()
+render.prn_body_close()
+render.prn_html_close()

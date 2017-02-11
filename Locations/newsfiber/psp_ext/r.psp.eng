@@ -1,0 +1,14 @@
+#include srv-py/search_util.eng
+
+TITLE      Suggest Link
+TAGLINE    Suggest Link
+NEW_SEARCH Home
+
+INTRO Share interesting English-language and Russian-language internet resource links with NewsFiber.
+
+SOURCES_RECEIVED Links received. Thank you very much.
+
+SOURCES_REGISTERED You might me interested to know that news headlines \
+are already pulled from the following sources:
+
+BUTTON_TEXT Send Links

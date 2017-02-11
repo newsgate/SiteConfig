@@ -1,0 +1,194 @@
+import search_util
+
+class RecomentationPageRender(search_util.SearchPageContext):
+
+  recomendation_page_render_base = search_util.SearchPageContext
+
+  def __init__(this, context, search_engine):
+    
+    this.recomendation_page_render_base.__init__(this,
+                                                 context,
+                                                 search_engine,
+                                                 "x",
+                                                 True)
+    this.query = ""
+    this.modifier = search_util.Modifier()
+    this.posted = False
+
+    if this.interceptor: this.block = this.interceptor.bastion("recom")
+
+  def prn_css(this):
+
+    if this.static.development:
+      
+      this.recomendation_page_render_base.prn_css(this)
+    
+      this.prn(\
+        '\n<link rel="stylesheet" type="text/css" href="',
+        this.resource_url('/fixed/css/c.css'),
+        '" media="all"/>')
+
+      if this.site_version == search_util.SearchPageContext.SV_MOB:
+        this.prn(\
+          '\n<link rel="stylesheet" type="text/css" href="',
+          this.resource_url('/fixed/css/c-mob.css'),
+          '" media="all"/>')
+
+    else:
+
+      if this.site_version == search_util.SearchPageContext.SV_MOB:
+        this.prn(\
+          '\n<link rel="stylesheet" type="text/css" href="',
+          this.compound_resource_url('css/c-mob.css'),
+          '" media="all"/>')
+        
+      else:
+        this.prn(\
+          '\n<link rel="stylesheet" type="text/css" href="',
+          this.compound_resource_url('css/c.css'),
+          '" media="all"/>')
+
+  def search_context(this):
+    context = this.recomendation_page_render_base.search_context(this)
+
+    context.start_from = 0
+    context.results_count = 0
+    context.in_2_columns = False
+    context.record_stat = False
+    context.filter = newsgate.search.SearchFilter()
+
+    context.sr_flags = newsgate.search.SearchContext.RF_FEED_STAT
+    
+    return context
+
+request = context.request
+prn = request.output.stream.prn
+loc = context.localization.get
+lm = el.psp.LocalizationMarker
+
+render = RecomentationPageRender(context, search_engine)
+render.legacy_title = False
+
+text = render.raw_param("qw").strip()
+sources = []
+
+if text:
+
+  if render.save_file(text, "source", True, False):
+
+    domains = []
+
+    for line in text.replace('\r', '\n').replace(' ', '\n').split('\n'):
+      line = line.strip()
+
+#      if line[0:7] == "http://" or line[0:4] == "www.":
+
+      pos = line.find('.')
+
+      if pos > 0 and pos != len(line) - 1:
+
+        if line[0:7] == "http://": line = line[7:]
+        if line[0:4] == "www.": line = line[4:]
+
+        pos = line.find('/')
+        if pos >= 0: line = line[0:pos]
+
+        domains.append(line)
+
+    if len(domains):
+
+      ctx = render.search_context()
+      ctx.query = "EVERY DOMAIN"
+
+      for d in domains: ctx.query += " " + d
+
+      render.search(ctx)
+
+      try:
+
+        render.search(ctx)
+
+        if render.search_result != None:
+          for opt in render.search_result.feed_filter_options:
+            if opt.id: sources.append(opt.id)
+
+      except:
+        pass
+
+render.prn_html_open()
+render.prn_head_open()
+
+prn('\n<title>', lm, "TITLE", ' - ', 
+    el.string.manip.xml_encode(render.static.server_instance_name),
+    '</title>')
+
+render.prn_css()
+render.prn_head_close()
+
+render.prn_body_open()
+
+prn(R'''
+<table id="topbar_table">
+  <tr>
+  <td id="tagline">''', lm, "TAGLINE", R'''</td>
+  <td id="menu"><a href="''',
+    el.string.manip.xml_encode(render.site + "/"), '">')
+
+if render.site_version == search_util.SearchPageContext.SV_MOB:
+  prn('<img src="', render.resource_url('/fixed/img/home32.png'),
+      '" width="32" height="32" class="mob_menu_img"/>')
+
+else:
+  prn(lm, "NEW_SEARCH")
+
+prn(R'''</a>
+  </td>
+  </tr>
+</table>
+<table id="main_area" align="center"><tr><td>
+''')
+
+
+prn(R'''
+  <div id="feed_back">''', lm, text and "SOURCES_RECEIVED" or "INTRO", 
+  '</div>')
+
+if text:
+
+  if len(sources):
+      
+    prn('\n  <div id="feed_back">', lm, "SOURCES_REGISTERED", "<p>")
+
+    for src in sources:
+
+      mod = search_util.Modifier()
+      mod.source = src
+
+      fl = search_util.Filter()
+
+      url = render.search_link(path = '/p/s/h',
+                               modifier = mod,
+                               filter = fl,
+                               export = True)
+
+      prn('<a href="', el.string.manip.xml_encode(url), '" target="_blank">',
+          el.string.manip.xml_encode(src), '</a><br>')
+
+    prn('</div>')
+
+else:
+
+  prn(R'''
+  <form id="f" action="/p/x/r" method="post">
+    <textarea rows="10" name="qw" id="qw"></textarea><br>
+    <div class="button">
+    <input type="submit" value="''', lm, "BUTTON_TEXT", R'''" id="bt"/>
+    </div>
+  </form>''')
+
+prn('\n</td></tr></table>')
+
+render.prn_copyright(True)
+render.prn_counters()
+render.prn_body_close()
+render.prn_html_close()

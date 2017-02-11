@@ -1,0 +1,33 @@
+#include srv-py/search_util.eng
+
+TITLE      Terms of Use
+TAGLINE    
+NEW_SEARCH Home
+
+INTRO An Internet user (hereinafter User) of the site newsfiber.com \
+(hereinafter Resource) should read these terms of use of the Resource and in \
+case of disagreement with them immediately discontinue use of the Resource.
+
+P1 1. All services of the Resource are provided free of charge and as is.
+
+P2 2. The Resource is not responsible for the accuracy of published article \
+announcements provided by third party sources.
+
+P3 3. Applying maximum efforts to maintain the Resource availability we \
+however can not guarantee accuracy and continuity of its work, as well as the \
+timeliness of information publication.
+
+P4 4. The owner of the Resource is not liable to a User for any loss of \
+profits or revenue, loss of data, financial losses, as well as any other \
+damages directly or indirectly related to use of the Resource.
+
+P5 5. A User undertakes not to interfere with the work of the Resource \
+bypassing the interface provided.
+
+P6 6. A User should not prevent the other Users from the access to the Resource.
+
+P7 7. The Resource owner reserves the right to limit the User's access to \
+Resource in case the User is suspected in violation of these terms of use.
+
+P8 8. The Resource does not gather, process and transfer personal data of the \
+Users.

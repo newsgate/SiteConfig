@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.sitemaps.org/schemas/sitemap-video/1.1">
+
+  <url>
+    <loc>http://www.newsfiber.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/?n=rus</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/?n=eng</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/?n=eng&amp;y=USA</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/?n=eng&amp;y=GBR</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/?n=eng&amp;y=IND</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/?n=eng&amp;y=AUS</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/?n=eng&amp;y=NZL</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FIT%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FIT%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FIT%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FIT%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FIT%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FIT%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FIT%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FBusiness%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FBusiness%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FBusiness%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FBusiness%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FBusiness%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FBusiness%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FBusiness%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FEarth%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FEarth%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FEarth%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FEarth%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FEarth%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FEarth%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FEarth%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FCulture%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FCulture%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FCulture%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FCulture%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FCulture%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FCulture%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FCulture%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FMosaic%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FMosaic%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FMosaic%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FMosaic%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FMosaic%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FMosaic%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FMosaic%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FScience%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FScience%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FScience%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FScience%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FScience%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FScience%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FScience%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FObscure%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FObscure%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FObscure%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FObscure%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FObscure%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FObscure%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FObscure%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSociety%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSociety%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSociety%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSociety%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSociety%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSociety%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSociety%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FRecreation%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FRecreation%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FRecreation%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FRecreation%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FRecreation%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FRecreation%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FRecreation%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSport%2F&amp;n=rus</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSport%2F&amp;n=eng</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSport%2F&amp;n=eng&amp;y=USA</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSport%2F&amp;n=eng&amp;y=GBR</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSport%2F&amp;n=eng&amp;y=IND</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSport%2F&amp;n=eng&amp;y=AUS</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/h?v=C%2FSport%2F&amp;n=eng&amp;y=NZL</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/i?n=rus</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://www.newsfiber.com/p/s/i?n=eng</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+</urlset>
