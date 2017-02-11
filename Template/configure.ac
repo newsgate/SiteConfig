@@ -464,12 +464,12 @@ case $bit_number in
 esac
 
 apache_modules_path="/usr/lib$libdir_suffix/httpd/modules"
-apache_app_path="/usr/sbin/httpd.worker."
+apache_app_path="/usr/sbin/httpd.worker"
 
-case $bit_number in
-  64) apache_app_path="${apache_app_path}x86_64";;
-  32) apache_app_path="${apache_app_path}i386";;
-esac
+#case $bit_number in
+#  64) apache_app_path="${apache_app_path}.x86_64";;
+#  32) apache_app_path="${apache_app_path}.i386";;
+#esac
 
 AC_SUBST([apache_modules_path])
 AC_SUBST([apache_app_path])
