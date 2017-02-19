@@ -7,5 +7,5 @@ function modifyConfigSpec {
   execCmd "sed -i 's/##TYPE##/$configType/' $targetDir/RPM/SPECS/`basename $specFile`"
 }
 
-stage[31]='modifyConfigSpec'
+stage[25]='modifyConfigSpec'
 stage[60]='none'
