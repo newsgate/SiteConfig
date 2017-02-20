@@ -37,7 +37,7 @@ pushd %buildroot%__server_dir
 popd
 
 %files -f cert.files
-%defattr(-, root, adgroup)
+%defattr(-, root, newsgate)
 %__server_dir/etc/*.sh
 %__server_dir/etc/NewsGate/*.sh
 %__server_dir/etc/NewsGate/*.cnf
@@ -53,7 +53,7 @@ popd
 /etc/snmp/subagent-shell/*
 /etc/security/limits.d/*
 /etc/syslog-ng/conf.d/*
-%defattr(-, aduser, adgroup)
+%defattr(-, newsgate, newsgate)
 %dir %__work_dir
 %__server_dir/var
 
