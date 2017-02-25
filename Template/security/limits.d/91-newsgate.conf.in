@@ -1,2 +1,2 @@
-aduser hard nproc unlimited
-aduser soft nproc unlimited
+@maintanance_username@ hard nproc unlimited
+@maintanance_username@ soft nproc unlimited
