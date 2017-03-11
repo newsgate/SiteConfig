@@ -29,6 +29,8 @@ mkdir -p "@cache_root@/Message/Bank" && \
 mkdir -p "@cache_root@/Event" && \
 mkdir -p "@cache_root@/Moderator" && \
 mkdir -p "@cache_root@/ModeratorFe" && \
+mkdir -p "@cache_root@/WebFe" && \
+mkdir -p "@cache_root@/LimitedFe" && \
 mkdir -p "@cache_root@/Statistics" && \
 mkdir -p "@cache_root@/Mailing/SearchMailer" && \
 mkdir -p "@cache_root@/FraudPrevention" && \

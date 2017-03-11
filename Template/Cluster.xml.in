@@ -382,7 +382,7 @@
   
   <status>
     \VAR:setenv\ &amp;&amp; ElProbeWEB.sh \\
-    "http://localhost:@service_frontend_limited_port@/sysmon" "system_monitor"
+    "@service_frontend_limited_monitoring@/sysmon" "system_monitor"
   </status>
 
   <after service="Configurator"/>
@@ -418,7 +418,7 @@
   
   <status>
     \VAR:setenv\ &amp;&amp; ElProbeWEB.sh \\
-    "http://localhost:@service_frontend_search_port@/sysmon" "system_monitor"
+    "@service_frontend_search_monitoring@/sysmon" "system_monitor"
   </status>
 
   <after service="Configurator"/>

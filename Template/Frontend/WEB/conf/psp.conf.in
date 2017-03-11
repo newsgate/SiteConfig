@@ -26,6 +26,7 @@ PSP_CacheEntryUnusedTimeout     600
 PSP_CacheEntryUnusedCheckPeriod 60
 
 PSP_Config endpoint @service_frontend_search_hostname@
+PSP_Config ssl_endpoint @service_frontend_search_ssl_hostname@
 PSP_Config data_root @data_root@
 #PSP_Config languages eng rus
 PSP_Config language_filters @frontend_language_filters@
@@ -119,9 +120,10 @@ PSP_ErrorInResponse @service_frontend_error_in_response@
   PSP_Config search.image.front_image_max_width 300
   PSP_Config search.image.show_number 1
 
-  PSP_Config search.image.thumbnail.enable @message_image_thumbnail@
-  PSP_Config search.image.thumbnail.url    http://@service_frontend_limited_hostname@/thumb
-  PSP_Config search.image.thumbnail.mobile @message_image_mob_thumb@
+  PSP_Config search.image.thumbnail.enable  @message_image_thumbnail@
+  PSP_Config search.image.thumbnail.url     http://@service_frontend_limited_hostname@/thumb
+  PSP_Config search.image.thumbnail.ssl_url https://@service_frontend_limited_ssl_hostname@/thumb
+  PSP_Config search.image.thumbnail.mobile  @message_image_mob_thumb@
 
 # 0 mean do not apply restriction
   PSP_Config search.word.max_len 0
@@ -150,10 +152,11 @@ PSP_ErrorInResponse @service_frontend_error_in_response@
 
   PSP_Config search.not_crawler_ips "@xsearch_client_ips@"
 
-  PSP_Config search.stat.url http://@service_frontend_limited_hostname@/p/s/s
-  PSP_Config search.stat.processor_ref "@corbaloc_stat_processor_ref@"
-  PSP_Config search.stat.limit_checker_ref "@corbaloc_limit_checker_ref@"
-  PSP_Config search.stat.flush_period  5
+  PSP_Config search.stat.url                http://@service_frontend_limited_hostname@/p/s/s
+  PSP_Config search.stat.ssl_url            https://@service_frontend_limited_ssl_hostname@/p/s/s
+  PSP_Config search.stat.processor_ref      "@corbaloc_stat_processor_ref@"
+  PSP_Config search.stat.limit_checker_ref  "@corbaloc_limit_checker_ref@"
+  PSP_Config search.stat.flush_period       5
   PSP_Config search.stat.raw_stat_keep_days @service_stat_processor_raw_stat_keep_days@
 
   PSP_Config search.mail.enabled @search_mailing@

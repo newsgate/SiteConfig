@@ -795,6 +795,8 @@ service_db_port=`expr $server_port_base + 36`
 
 service_frontend_search_port=`expr $server_port_base + 80`
 service_frontend_search_hostname="$current_host:$service_frontend_search_port"
+service_frontend_search_ssl_port=`expr $server_port_base + 83`
+service_frontend_search_ssl_hostname="$current_host:$service_frontend_search_ssl_port"
 service_frontend_search_log_level="10"
 service_frontend_search_log_aspects="*"
 
@@ -806,6 +808,8 @@ service_frontend_moderator_ssl_use="0"
 
 service_frontend_limited_port=`expr $server_port_base + 82`
 service_frontend_limited_hostname="$current_host:$service_frontend_limited_port"
+service_frontend_limited_ssl_port=`expr $server_port_base + 84`
+service_frontend_limited_ssl_hostname="$current_host:$service_frontend_limited_ssl_port"
 service_frontend_limited_log_level="10"
 service_frontend_limited_log_aspects="*"
 
@@ -1499,25 +1503,129 @@ osbe_add_option service_frontend_error_in_response \
 # browser. Use with care as it breaches security practices exposing server
 # internals."
 
-osbe_add_option service_frontend_search_port \
-                "$service_frontend_search_port" \
-                "service.frontend.search.port" \
-                "Search Frontend Port" \
+osbe_add_option service_frontend_search_ssl_use \
+                "0" \
+                "service.frontend.search.ssl.use" \
+                "Search Frontend SSL Usage" \
                 "" \
                 "0" \
+"If 0, then Search Frontend will be available only through HTTP. 
+# If 1, then also through HTTPS.
+# If 2, then only through HTTPS."
+
+service_frontend_search_config=""
+
+if test $service_frontend_search_ssl_use -ne 2; then
+
+  osbe_add_option service_frontend_search_port \
+                  "$service_frontend_search_port" \
+                  "service.frontend.search.port" \
+                  "Search Frontend Port" \
+                  "" \
+                  "0" \
 "
 # Search Frontend is a group of WEB services providing search functionality
 # to end-users and third-party applications.
 #
 # Search Frontend TCP port."
 
-osbe_add_option service_frontend_search_hostname \
-                "$service_frontend_search_hostname" \
-                "service.frontend.search.hostname" \
-                "Search Frontend Host[:Port]" \
-                "" \
-                "0" \
-"Search Frontend endpoint available to end-users in host or host:port forms."
+  osbe_add_option service_frontend_search_hostname \
+                  "$service_frontend_search_hostname" \
+                  "service.frontend.search.hostname" \
+                  "Search Frontend Host[:Port]" \
+                  "" \
+                  "0" \
+  "Search Frontend endpoint available to end-users in host or host:port forms."
+
+  service_frontend_search_config="Listen $service_frontend_search_port
+<VirtualHost *:$service_frontend_search_port>
+ServerName $service_frontend_search_hostname
+</VirtualHost>
+"
+
+service_frontend_search_monitoring=http://localhost:$service_frontend_search_port
+else
+service_frontend_search_monitoring=https://localhost:$service_frontend_search_ssl_port
+fi
+
+doc_root="$www_root/htdocs/WEB"
+config_doc_root="\$(destdir)\$(proddir)/etc/NewsGate/www/htdocs/WEB"
+config_psp_root="\$(destdir)\$(proddir)/etc/NewsGate/www/templates"
+
+extra_installs=\
+"  mkdir -p $config_doc_root \\
+  && ln -s $data_root/comp $config_doc_root/comp \\
+  && ln -s $doc_root/fixed $config_doc_root/fixed \\
+  && ln -s $doc_root/sysmon $config_doc_root/sysmon"
+
+service_frontend_search_ssl_config=""
+
+if test $service_frontend_search_ssl_use -ne 0; then
+  osbe_add_option service_frontend_search_ssl_port \
+                  "$service_frontend_search_ssl_port" \
+                  "service.frontend.search.ssl.port" \
+                  "Search Frontend HTTPS Port" \
+                  "" \
+                  "0" \
+  "HTTPS port for Search Frontend."
+
+  osbe_add_option service_frontend_search_ssl_hostname \
+                  "$service_frontend_search_ssl_hostname" \
+                  "service.frontend.search.ssl.hostname" \
+                  "Search Frontend HTTPS Host[:Port]" \
+                  "" \
+                  "0" \
+  "Search Frontend HTTPS endpoint available to end-users in host or host:port forms."
+
+  osbe_add_option service_frontend_search_ssl_cert \
+                  "" \
+                  "service.frontend.search.ssl.cert" \
+                  "Search Frontend SSL Certificate File" \
+                  "" \
+                  "1" \
+  "Search Frontend SSL Certificate File path."
+
+  if test -z "$service_frontend_search_ssl_cert"; then
+    AC_MSG_ERROR([Search Frontend SSL certificate path not specified])
+  fi
+
+  ssl_cert_name=`basename $service_frontend_search_ssl_cert`
+  ssl_cert_ext=`echo "$ssl_cert_name" | sed -n -e "s/.*\.\(.*\)/\1/p"`
+  ssl_cert_path="$site_config_root/cert/$ssl_cert_name"
+  ssl_cert_path2="\$(destdir)\$(proddir)/etc/NewsGate/cert/$ssl_cert_name"
+
+  extra_installs="$extra_installs \\
+  && \$(INSTALL_DATA) $service_frontend_search_ssl_cert $ssl_cert_path2"
+
+  service_frontend_search_ssl_config="Listen $service_frontend_search_ssl_port
+LoadModule ssl_module  /usr/lib$libdir_suffix/httpd/modules/mod_ssl.so
+<IfDefine ap_2_4>
+  LoadModule socache_shmcb_module  /usr/lib64/httpd/modules/mod_socache_shmcb.so
+</IfDefine>
+
+SSLPassPhraseDialog builtin
+SSLSessionCache     shmcb:$cache_root/WebFe/scache(512000)
+SSLRandomSeed       startup file:/dev/urandom  256
+SSLRandomSeed       connect builtin
+SSLCryptoDevice     builtin
+
+<IfDefine ap_2_4>
+  Mutex default
+</IfDefine>
+<IfDefine !ap_2_4>
+  SSLMutex default
+</IfDefine>
+
+<VirtualHost *:$service_frontend_search_ssl_port>
+ServerName $service_frontend_search_ssl_hostname
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+SSLSessionCacheTimeout  300
+SSLEngine on
+SSLCertificateFile $ssl_cert_path
+</VirtualHost>
+"
+fi
 
 osbe_add_option service_frontend_search_log_level \
                 "$service_frontend_search_log_level" \
@@ -1577,26 +1685,111 @@ osbe_add_option service_frontend_search_psp_extension \
                 "0" \
 "Directory with psp extensions."
 
+service_frontend_limited_config=""
+service_frontend_limited_ssl_config=""
+
 if test $limited_frontend -eq 1; then
-  osbe_add_option service_frontend_limited_port \
-                  "$service_frontend_limited_port" \
-                  "service.frontend.limited.port" \
-                  "Limited Frontend Port" \
-                  "" \
-                  "0" \
+
+  if test $service_frontend_search_ssl_use -ne 2; then
+
+    osbe_add_option service_frontend_limited_port \
+                    "$service_frontend_limited_port" \
+                    "service.frontend.limited.port" \
+                    "Limited Frontend Port" \
+                    "" \
+                    "0" \
 "
 # Limited Frontend is a group of WEB services providing thumbnail, message and 
 # statistics logging requests processing functionality
 #
 # Limited Frontend TCP port."
 
-  osbe_add_option service_frontend_limited_hostname \
-                  "$service_frontend_limited_hostname" \
-                  "service.frontend.limited.hostname" \
-                  "Limited Frontend Host[:Port]" \
-                  "" \
-                  "0" \
+    osbe_add_option service_frontend_limited_hostname \
+                    "$service_frontend_limited_hostname" \
+                    "service.frontend.limited.hostname" \
+                    "Limited Frontend Host[:Port]" \
+                    "" \
+                    "0" \
 "Limited Frontend endpoint available to end-users in host or host:port forms."
+
+    service_frontend_limited_config="Listen $service_frontend_limited_port
+<VirtualHost *:$service_frontend_limited_port>
+ServerName $service_frontend_limited_hostname
+</VirtualHost>
+"
+
+    service_frontend_limited_monitoring=http://localhost:$service_frontend_limited_port
+  else
+    service_frontend_limited_monitoring=https://localhost:$service_frontend_limited_ssl_port
+  fi
+
+  # Limited frontend is configured consistent with search frontend in regards 
+  # to ssl use.
+  #
+  if test $service_frontend_search_ssl_use -ne 0; then
+    osbe_add_option service_frontend_limited_ssl_port \
+                    "$service_frontend_limited_ssl_port" \
+                    "service.frontend.limited.ssl.port" \
+                    "Limited Frontend HTTPS Port" \
+                    "" \
+                    "0" \
+    "HTTPS port for Limited Frontend."
+
+    osbe_add_option service_frontend_limited_ssl_cert \
+                    "" \
+                    "service.frontend.limited.ssl.cert" \
+                    "Limited Frontend SSL Certificate File" \
+                    "" \
+                    "1" \
+    "Limited Frontend SSL Certificate File path."
+
+    if test -z "$service_frontend_limited_ssl_cert"; then
+      AC_MSG_ERROR([Limited Frontend SSL certificate path not specified])
+    fi
+
+    ssl_cert_name=`basename $service_frontend_limited_ssl_cert`
+    ssl_cert_ext=`echo "$ssl_cert_name" | sed -n -e "s/.*\.\(.*\)/\1/p"`
+    ssl_cert_path="$site_config_root/cert/$ssl_cert_name"
+    ssl_cert_path2="\$(destdir)\$(proddir)/etc/NewsGate/cert/$ssl_cert_name"
+
+    extra_installs="$extra_installs \\
+  && \$(INSTALL_DATA) $service_frontend_limited_ssl_cert $ssl_cert_path2"
+
+    service_frontend_limited_ssl_config="Listen $service_frontend_limited_ssl_port
+LoadModule ssl_module  /usr/lib$libdir_suffix/httpd/modules/mod_ssl.so
+<IfDefine ap_2_4>
+  LoadModule socache_shmcb_module  /usr/lib64/httpd/modules/mod_socache_shmcb.so
+</IfDefine>
+
+SSLPassPhraseDialog builtin
+SSLSessionCache     shmcb:$cache_root/LimitedFe/scache(512000)
+SSLRandomSeed       startup file:/dev/urandom  256
+SSLRandomSeed       connect builtin
+SSLCryptoDevice     builtin
+
+<IfDefine ap_2_4>
+  Mutex default
+</IfDefine>
+<IfDefine !ap_2_4>
+  SSLMutex default
+</IfDefine>
+
+<VirtualHost *:$service_frontend_limited_ssl_port>
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+SSLSessionCacheTimeout  300
+SSLEngine on
+SSLCertificateFile $ssl_cert_path
+</VirtualHost>
+"
+    osbe_add_option service_frontend_limited_ssl_hostname \
+                    "$service_frontend_limited_ssl_hostname" \
+                    "service.frontend.limited.ssl.hostname" \
+                    "Limited Frontend HTTPS Host[:Port]" \
+                    "" \
+                    "0" \
+    "Limited Frontend HTTPS endpoint available to end-users in host or host:port forms."
+  fi
 
   osbe_add_option service_frontend_limited_log_level \
                   "$service_frontend_limited_log_level" \
@@ -1604,7 +1797,7 @@ if test $limited_frontend -eq 1; then
                   "Limited Frontend Log Level" \
                   "" \
                   "0" \
-"Limited Frontend log level."
+                  "Limited Frontend log level."
 
   osbe_add_option service_frontend_limited_log_aspects \
                   "$service_frontend_limited_log_aspects" \
@@ -1706,16 +1899,6 @@ if test -n "$service_frontend_search_robots_txt"; then
     AC_MSG_ERROR([Failed to read robots.txt directives])
   fi
 fi
-
-doc_root="$www_root/htdocs/WEB"
-config_doc_root="\$(destdir)\$(proddir)/etc/NewsGate/www/htdocs/WEB"
-config_psp_root="\$(destdir)\$(proddir)/etc/NewsGate/www/templates"
-
-extra_installs=\
-"  mkdir -p $config_doc_root \\
-  && ln -s $data_root/comp $config_doc_root/comp \\
-  && ln -s $doc_root/fixed $config_doc_root/fixed \\
-  && ln -s $doc_root/sysmon $config_doc_root/sysmon"
 
 if test -n "$service_frontend_search_www_extension"; then
 
@@ -1836,9 +2019,18 @@ fi
 
 if test $service_frontend_search_ensure_canonical -eq 1; then
   service_frontend_search_canonical_endpoint="$service_frontend_search_hostname"
+  service_frontend_search_canonical_ssl_endpoint="$service_frontend_search_ssl_hostname"
 else
   service_frontend_search_canonical_endpoint=""
+  service_frontend_search_canonical_ssl_endpoint=""
 fi
+
+if test $service_frontend_search_ssl_use -ne 2; then
+  newsgate_link=http://$service_frontend_search_hostname
+else
+  newsgate_link=https://$service_frontend_search_ssl_hostname
+fi
+
 
 image_extension_whitelist=`cat "$srcdir/image_extension_whitelist"`
 image_prefix_blacklist=`cat "$srcdir/image_prefix_blacklist"`
@@ -1929,11 +2121,20 @@ AC_SUBST([service_frontend_error_in_response])
 
 AC_SUBST([service_frontend_search_port])
 AC_SUBST([service_frontend_search_hostname])
+AC_SUBST([service_frontend_search_ssl_port])
+AC_SUBST([service_frontend_search_ssl_hostname])
 AC_SUBST([service_frontend_search_log_level])
 AC_SUBST([service_frontend_search_log_aspects])
 AC_SUBST([service_frontend_search_canonical_endpoint])
+AC_SUBST([service_frontend_search_canonical_ssl_endpoint])
 AC_SUBST([search_interceptor_config])
+AC_SUBST([service_frontend_search_monitoring])
+
+AC_SUBST([newsgate_link])
+
 OSBE_SUBST_VIA_FILE([service_frontend_search_robots_directives])
+OSBE_SUBST_VIA_FILE([service_frontend_search_config])
+OSBE_SUBST_VIA_FILE([service_frontend_search_ssl_config])
 
 AC_SUBST([service_frontend_moderator_port])
 AC_SUBST([service_frontend_moderator_hostname])
@@ -1944,8 +2145,13 @@ OSBE_SUBST_VIA_FILE([service_frontend_moderator_ssl_config])
 
 AC_SUBST([service_frontend_limited_port])
 AC_SUBST([service_frontend_limited_hostname])
+AC_SUBST([service_frontend_limited_ssl_port])
+AC_SUBST([service_frontend_limited_ssl_hostname])
 AC_SUBST([service_frontend_limited_log_level])
 AC_SUBST([service_frontend_limited_log_aspects])
+AC_SUBST([service_frontend_limited_monitoring])
+OSBE_SUBST_VIA_FILE([service_frontend_limited_config]) 
+OSBE_SUBST_VIA_FILE([service_frontend_limited_ssl_config]) 
 
 AC_SUBST([psp_extras])
 
@@ -2335,6 +2541,7 @@ if test $limited_frontend -eq 1; then
   fi
 else
   service_frontend_limited_hostname=$service_frontend_search_hostname
+  service_frontend_limited_ssl_hostname=$service_frontend_search_ssl_hostname
 fi
 
 OSBE_SUBST_VIA_FILE([hosts_config])
@@ -2354,6 +2561,14 @@ AC_SUBST([server_host_moderator_manager])
 AC_SUBST([server_host_customer_manager])
 AC_SUBST([server_host_category_manager])
 AC_SUBST([server_host_search_frontend])
+
+if test $service_frontend_search_ssl_use -ne 2; then
+  newsgate_internal_link=http://$server_host_search_frontend:$service_frontend_search_port
+else
+  newsgate_internal_link=https://$server_host_search_frontend:$service_frontend_search_ssl_port
+fi
+
+AC_SUBST([newsgate_internal_link])
 
 corbaloc_word_manager_proc_ctl=`corbaloc_url "\\\\HOST\\\\" \
                                 "$service_word_manager_port"`"/ProcessControl"

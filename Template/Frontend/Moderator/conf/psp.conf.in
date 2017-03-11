@@ -14,8 +14,8 @@ PSP_LangCalc reset
 
 PSP_Config endpoint @service_frontend_moderator_hostname@
 PSP_Config url_prefix @service_frontend_moderator_schema@://@service_frontend_moderator_hostname@
-PSP_Config newsgate_link @service_frontend_search_hostname@
-PSP_Config newsgate_internal_link @server_host_search_frontend@:@service_frontend_search_port@/p/s/h
+PSP_Config newsgate_link @newsgate_link@
+PSP_Config newsgate_internal_link @newsgate_internal_link@/p/s/h
 PSP_Config log_level   @service_frontend_moderator_log_level@
 PSP_Config log_aspects @service_frontend_moderator_log_aspects@
 PSP_Config word_path /p/w

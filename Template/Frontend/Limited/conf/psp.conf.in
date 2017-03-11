@@ -14,3 +14,4 @@ PSP_Config log_aspects @service_frontend_limited_log_aspects@
 
 PSP_Config cookie_domain_offset @cookie_domain_offset@
 PSP_Config endpoint @service_frontend_limited_hostname@
+PSP_Config ssl_endpoint @service_frontend_limited_ssl_hostname@
